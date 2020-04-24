@@ -72,7 +72,7 @@ public class UsersController {
             password = json.getInt("password");
         }catch(JSONException e){
             e.getLocalizedMessage();
-            return false;
+            return true;
         }
         return user.getUserAccess(login, password);
     }
