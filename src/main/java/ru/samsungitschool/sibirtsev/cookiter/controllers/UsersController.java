@@ -44,8 +44,7 @@ public class UsersController {
             return resp;
         }
 
-        if (user.getUserAccessbyLog(login, password)) {
-
+        if (user.getRegisterAccess(login)==null) {
             resp.setResponse(user.creatUser(email, login, password));
             return resp;
         } else {
