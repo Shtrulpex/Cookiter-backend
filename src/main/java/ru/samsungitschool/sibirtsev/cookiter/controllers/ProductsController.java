@@ -18,7 +18,7 @@ public class ProductsController {
     @Autowired
     private ProductsRepository productsRepository;
 
-    @RequestMapping(value="/products/create",method=RequestMethod.PUT,consumes="text/plain")
+    @RequestMapping(value="/create",method=RequestMethod.PUT,consumes="text/plain")
     public int createProduct(@RequestBody String param){
         JSONArray jsonar;
         Long[] recipes;
@@ -37,7 +37,7 @@ public class ProductsController {
         }
         return productsRepository.createProduct(name, recipes);
     }
-    @RequestMapping(value="/products/update", method=RequestMethod.POST, consumes="text/plain")
+    @RequestMapping(value="/update", method=RequestMethod.POST, consumes="text/plain")
     public int updateProduct(@RequestBody String param){
         Products pr = new Products();
         try{
@@ -59,7 +59,7 @@ public class ProductsController {
         }
         return productsRepository.updateProduct(pr);
     }
-    @RequestMapping(value="/products/{id}", method=RequestMethod.DELETE)
+    @RequestMapping(value="/{id}", method=RequestMethod.DELETE)
     public int deleteProduct(@PathVariable Integer id){
         return productsRepository.deleteProduct(id);
     }
