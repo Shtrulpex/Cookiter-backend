@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import ru.samsungitschool.sibirtsev.cookiter.TrueFalseModel;
 import ru.samsungitschool.sibirtsev.cookiter.entity.Users;
 import ru.samsungitschool.sibirtsev.cookiter.repositories.UsersRepository;
 
@@ -27,10 +28,11 @@ public class UsersController {
 
     @RequestMapping(value="/create", method=RequestMethod.POST, consumes="text/plain")
 
-    public JSONObject createUser(@RequestBody String param){
+    public TrueFalseModel createUser(@RequestBody String param){
         String login;
         String email;
         Integer password;
+        TrueFalseModel resp = new TrueFalseModel();
         try{
             JSONObject json = new JSONObject(param);
             login = json.getString("login");
@@ -38,20 +40,19 @@ public class UsersController {
             password = json.getInt("password");
         }catch(JSONException e){
             e.getLocalizedMessage();
-            return null;
+            resp.setResponse(0);
+            return resp;
         }
-        try {
-            JSONObject json = new JSONObject();
-            if (user.getUserAccessbyLog(login, password)) {
-                json.put("response",user.creatUser(email, login, password));
-            } else json.put("response", 0);
 
-            return json;
+        if (user.getUserAccessbyLog(login, password)) {
 
-        }catch (JSONException e){
-            e.getLocalizedMessage();
-            return null;
+            resp.setResponse(user.creatUser(email, login, password));
+            return resp;
+        } else {
+            resp.setResponse(0);
+            return resp;
         }
+
     }
     @RequestMapping(value="/update",method=RequestMethod.PUT,consumes="text/plain")
     public int updateUser(@RequestBody String param){
