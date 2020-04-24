@@ -62,7 +62,7 @@ public class UsersController {
         return user.deleteUser(id);
     }
 
-    @RequestMapping(value="/getUserAccess", method=RequestMethod.GET, consumes="text/plain")
+    @RequestMapping(value="/getUserAccessbyLog", method=RequestMethod.GET, consumes="text/plain")
     public boolean getUser(@RequestBody String param){
         String login;
         Integer password;
@@ -72,22 +72,21 @@ public class UsersController {
             password = json.getInt("password");
         }catch(JSONException e){
             e.getLocalizedMessage();
-            return true;
+            return false;
         }
-        return user.getUserAccess(login, password);
+        return user.getUserAccessbyLog(login, password);
     }
     @RequestMapping(value = "/getRegisterAccess", method=RequestMethod.GET, consumes="text/plain")
     public boolean getRegisterAccess(@RequestBody String param){
-        String login, email;
+        String login;
         try {
             JSONObject json = new JSONObject(param);
             login = json.getString("login");
-            email = json.getString("email");
         }catch (JSONException e){
             e.getLocalizedMessage();
             return false;
         }
-        if (user.getUserbyLogin(login)==null){
+        if (user.getRegisterAccess(login)==null){
             return true;
         }else return false;
     }

@@ -27,14 +27,15 @@ public class UsersRepository {
     public int deleteUser(Integer id){
         return jdbcTemplate.update("DELETE FROM \"USERS\" WHERE \"ID\" = ?", id);
     }
-    public Users getUserbyLogin(String login){
+
+    public Users getRegisterAccess(String login){
         try {
             return jdbcTemplate.queryForObject("SELECT * FROM \"USERS\" WHERE \"LOGIN\" LIKE \' ? \'", new UsersMapper(), login);
         }catch (Exception e){
             return null;
         }
     }
-    public boolean getUserAccess(String login, Integer pass){
+    public boolean getUserAccessbyLog(String login, Integer pass){
         Users user = jdbcTemplate.queryForObject("SELECT * FROM \"USERS\" WHERE \"LOGIN\" LIKE \' ? \'", new UsersMapper(), login);
         return user.getPassword()==pass;
     }
