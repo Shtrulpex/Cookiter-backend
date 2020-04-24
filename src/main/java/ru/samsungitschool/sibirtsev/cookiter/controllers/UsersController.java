@@ -4,6 +4,7 @@ import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,12 @@ public class UsersController {
     @Autowired
     private UsersRepository user;
 
-    @RequestMapping(value="/users/create", method=RequestMethod.PUT, consumes="text/plain")
+    @RequestMapping("/")
+    public String index() {
+        return "Hello!";
+    }
+
+    @RequestMapping(value="/create", method=RequestMethod.POST, consumes="text/plain")
     public int createUser(@RequestBody String param){
         String login;
         String email;
@@ -35,8 +41,8 @@ public class UsersController {
         }
         return user.creatUser(email, login, password);
     }
-    @RequestMapping(value="/users/update",method=RequestMethod.POST,consumes="text/plain")
-    public int updatePerson(@RequestBody String param){
+    @RequestMapping(value="/update",method=RequestMethod.PUT,consumes="text/plain")
+    public int updateUser(@RequestBody String param){
         Users us = new Users();
         try{
             JSONObject json = new JSONObject(param);
@@ -50,7 +56,7 @@ public class UsersController {
         }
         return user.updateUser(us);
     }
-    @RequestMapping(value="/users/{id}", method=RequestMethod.DELETE)
+    @RequestMapping(value="/{id}", method=RequestMethod.DELETE)
     public int deleteUser(@PathVariable Integer id){
         return user.deleteUser(id);
     }
