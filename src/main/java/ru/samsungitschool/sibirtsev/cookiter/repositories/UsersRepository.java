@@ -35,8 +35,8 @@ public class UsersRepository {
             return null;
         }
     }
-    public boolean getUserAccessbyLog(String login, Integer pass){
+    public Integer getUserAccessbyLog(String login, Integer pass){
         Users user = jdbcTemplate.queryForObject("SELECT * FROM \"USERS\" WHERE \"LOGIN\" LIKE  ? ", new UsersMapper(), login);
-        return user.getPassword()==pass;
+        return user.getPassword();
     }
 }

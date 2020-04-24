@@ -63,7 +63,7 @@ public class UsersController {
     }
 
     @RequestMapping(value="/getUserAccessbyLog", method=RequestMethod.GET, consumes="text/plain")
-    public boolean getUser(@RequestBody String param){
+    public Integer getUser(@RequestBody String param){
         String login;
         Integer password;
         try {
@@ -72,7 +72,7 @@ public class UsersController {
             password = json.getInt("password");
         }catch(JSONException e){
             e.getLocalizedMessage();
-            return true;
+            return 123;
         }
         return user.getUserAccessbyLog(login, password);
     }
