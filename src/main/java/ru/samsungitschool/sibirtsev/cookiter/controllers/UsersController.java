@@ -27,7 +27,7 @@ public class UsersController {
 
     @RequestMapping(value="/create", method=RequestMethod.POST, consumes="text/plain")
 
-    public int createUser(@RequestBody String param){
+    public JSONObject createUser(@RequestBody String param){
         String login;
         String email;
         Integer password;
@@ -38,9 +38,20 @@ public class UsersController {
             password = json.getInt("password");
         }catch(JSONException e){
             e.getLocalizedMessage();
-            return 0;
+            return null;
         }
-        return user.creatUser(email, login, password);
+        try {
+            JSONObject json = new JSONObject();
+            if (user.getUserAccessbyLog(login, password)) {
+                json.put("response",user.creatUser(email, login, password));
+            } else json.put("response", 0);
+
+            return json;
+
+        }catch (JSONException e){
+            e.getLocalizedMessage();
+            return null;
+        }
     }
     @RequestMapping(value="/update",method=RequestMethod.PUT,consumes="text/plain")
     public int updateUser(@RequestBody String param){
