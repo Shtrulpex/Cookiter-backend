@@ -17,7 +17,7 @@ import ru.samsungitschool.sibirtsev.cookiter.repositories.RecipesRepository;
 public class RecipesController {
     @Autowired
     private RecipesRepository recipes;
-    @RequestMapping(value="/create",method=RequestMethod.PUT,consumes="text/plain")
+    @RequestMapping(value="/recipe/create",method=RequestMethod.PUT,consumes="text/plain")
     public int createRecipe(@RequestBody String param){
         String name, recipe;
         Long[] products;
@@ -37,7 +37,7 @@ public class RecipesController {
         }
         return recipes.createRecipe(name, products, recipe);
     }
-    @RequestMapping(value="update",method=RequestMethod.POST,consumes="text/plain")
+    @RequestMapping(value="/recipe/update",method=RequestMethod.POST,consumes="text/plain")
     public int updatePhoneNumber(@RequestBody String param){
         Recipes rec = new Recipes();
         try {
@@ -60,7 +60,7 @@ public class RecipesController {
         }
         return recipes.updateRecipe(rec);
     }
-    @RequestMapping(value="{id}", method=RequestMethod.DELETE)
+    @RequestMapping(value="/recipe/{id}", method=RequestMethod.DELETE)
     public int deleteRecipe(@PathVariable Integer id){
         return recipes.deleteRecipe(id);
     }

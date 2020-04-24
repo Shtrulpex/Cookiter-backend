@@ -12,6 +12,6 @@ public class CookiterApplication {
     }
     @RequestMapping("/")
     public String index() {
-        return "!";
+        return "Hello!";
     }
 }

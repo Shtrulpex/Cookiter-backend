@@ -19,7 +19,7 @@ public class UsersController {
     @Autowired
     private UsersRepository user;
 
-    @RequestMapping(value="/create", method=RequestMethod.PUT, consumes="text/plain")
+    @RequestMapping(value="/users/create", method=RequestMethod.PUT, consumes="text/plain")
     public int createUser(@RequestBody String param){
         String login;
         String email;
@@ -35,7 +35,7 @@ public class UsersController {
         }
         return user.creatUser(email, login, password);
     }
-    @RequestMapping(value="update",method=RequestMethod.POST,consumes="text/plain")
+    @RequestMapping(value="/users/update",method=RequestMethod.POST,consumes="text/plain")
     public int updatePerson(@RequestBody String param){
         Users us = new Users();
         try{
@@ -50,11 +50,11 @@ public class UsersController {
         }
         return user.updateUser(us);
     }
-    @RequestMapping(value="{id}", method=RequestMethod.DELETE)
+    @RequestMapping(value="/users/{id}", method=RequestMethod.DELETE)
     public int deleteUser(@PathVariable Integer id){
         return user.deleteUser(id);
     }
-    @RequestMapping(value="/getUserAccess", method=RequestMethod.GET, consumes="text/plain")
+    @RequestMapping(value="/users/getUserAccess", method=RequestMethod.GET, consumes="text/plain")
     public boolean getUser(@RequestBody String param){
         String login;
         Integer password;
@@ -68,7 +68,7 @@ public class UsersController {
         }
         return user.getUserAccess(login, password);
     }
-    @RequestMapping(value = "/getRegisterAccess", method=RequestMethod.GET, consumes="text/plain")
+    @RequestMapping(value = "/users/getRegisterAccess", method=RequestMethod.GET, consumes="text/plain")
     public boolean getRegisterAccess(@RequestBody String param){
         String login, email;
         try {
