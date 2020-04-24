@@ -30,13 +30,13 @@ public class UsersRepository {
 
     public Users getRegisterAccess(String login){
         try {
-            return jdbcTemplate.queryForObject("SELECT * FROM \"USERS\" WHERE \"LOGIN\" LIKE \' ? \'", new UsersMapper(), login);
+            return jdbcTemplate.queryForObject("SELECT * FROM \"USERS\" WHERE \"LOGIN\" LIKE  ? ", new UsersMapper(), login);
         }catch (Exception e){
             return null;
         }
     }
     public boolean getUserAccessbyLog(String login, Integer pass){
-        Users user = jdbcTemplate.queryForObject("SELECT * FROM \"USERS\" WHERE \"LOGIN\" LIKE \' ? \'", new UsersMapper(), login);
+        Users user = jdbcTemplate.queryForObject("SELECT * FROM \"USERS\" WHERE \"LOGIN\" LIKE  ? ", new UsersMapper(), login);
         return user.getPassword()==pass;
     }
 }
