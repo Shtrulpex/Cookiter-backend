@@ -26,6 +26,7 @@ public class UsersController {
     }
 
     @RequestMapping(value="/create", method=RequestMethod.POST, consumes="text/plain")
+    
     public int createUser(@RequestBody String param){
         String login;
         String email;
