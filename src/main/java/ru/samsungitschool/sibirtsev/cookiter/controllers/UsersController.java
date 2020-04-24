@@ -26,7 +26,7 @@ public class UsersController {
     }
 
     @RequestMapping(value="/create", method=RequestMethod.POST, consumes="text/plain")
-    
+
     public int createUser(@RequestBody String param){
         String login;
         String email;
@@ -61,7 +61,8 @@ public class UsersController {
     public int deleteUser(@PathVariable Integer id){
         return user.deleteUser(id);
     }
-    @RequestMapping(value="/users/getUserAccess", method=RequestMethod.GET, consumes="text/plain")
+
+    @RequestMapping(value="/getUserAccess", method=RequestMethod.GET, consumes="text/plain")
     public boolean getUser(@RequestBody String param){
         String login;
         Integer password;
@@ -75,7 +76,7 @@ public class UsersController {
         }
         return user.getUserAccess(login, password);
     }
-    @RequestMapping(value = "/users/getRegisterAccess", method=RequestMethod.GET, consumes="text/plain")
+    @RequestMapping(value = "/getRegisterAccess", method=RequestMethod.GET, consumes="text/plain")
     public boolean getRegisterAccess(@RequestBody String param){
         String login, email;
         try {
