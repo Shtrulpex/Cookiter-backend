@@ -26,7 +26,7 @@ public class UsersController {
         return "Hello!";
     }
 
-    @RequestMapping(value="/create", method=RequestMethod.POST, consumes="text/plain")
+    @RequestMapping(value="/create", method=RequestMethod.POST)
 
     public TrueFalseModel createUser(@RequestBody Users users){
         String login;
