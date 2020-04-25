@@ -28,24 +28,14 @@ public class UsersController {
 
     @RequestMapping(value="/create", method=RequestMethod.POST, consumes="text/plain")
 
-    public TrueFalseModel createUser(@RequestBody String param){
+    public TrueFalseModel createUser(@RequestBody Users users){
         String login;
         String email;
         Integer password;
         TrueFalseModel resp = new TrueFalseModel();
-        try{
-            JSONObject json = new JSONObject(param);
-            login = json.getString("login");
-            email = json.getString("email");
-            password = json.getInt("password");
-        }catch(JSONException e){
-            e.getLocalizedMessage();
-            resp.setResponse(0);
-            return resp;
-        }
 
-        if (user.getRegisterAccess(login)==null) {
-            resp.setResponse(user.creatUser(email, login, password));
+        if (user.getRegisterAccess(users.getLogin())==null) {
+            resp.setResponse(user.creatUser(users.getEmail(), users.getLogin(), users.getPassword()));
             return resp;
         } else {
             resp.setResponse(0);
@@ -102,3 +92,5 @@ public class UsersController {
         }else return false;
     }
 }
+
+//https://cookiter.herokuapp.com/user/create?Content-Type=application/json
