@@ -22,7 +22,7 @@ public class UsersRepository {
         return jdbcTemplate.update("INSERT INTO \"USERS\" (\"EMAIL\", \"LOGIN\", \"PASSWORD\") VALUES(?, ?, ?)", email, login, password);
     }
     public int updateUser(Users users){
-        return jdbcTemplate.update("UPDATE \"USERS\" SET \"PASSWORD\" = ? WHERE \"ID\" = ?", users.getPassword(), users.getId());
+        return jdbcTemplate.update("UPDATE \"USERS\" SET \"PASSWORD\" = ? WHERE \"LOGIN\" LIKE ?", users.getPassword(), users.getLogin());
     }
     public int deleteUser(Integer id){
         return jdbcTemplate.update("DELETE FROM \"USERS\" WHERE \"ID\" = ?", id);
@@ -36,7 +36,12 @@ public class UsersRepository {
         }
     }
     public boolean getUserAccessbyLog(String login, Integer pass){
-        Users user = jdbcTemplate.queryForObject("SELECT * FROM \"USERS\" WHERE \"LOGIN\" LIKE  ? ", new UsersMapper(), login);
-        return user.getPassword().equals(pass);
+        try {
+            Users user = jdbcTemplate.queryForObject("SELECT * FROM \"USERS\" WHERE \"LOGIN\" LIKE  ? ", new UsersMapper(), login);
+            return user.getPassword().equals(pass);
+        }catch (Exception e){
+            e.getLocalizedMessage();
+            return false;
+        }
     }
 }

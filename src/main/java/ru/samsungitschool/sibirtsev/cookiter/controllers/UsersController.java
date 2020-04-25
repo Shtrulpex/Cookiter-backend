@@ -28,14 +28,14 @@ public class UsersController {
 
     @RequestMapping(value="/create", method=RequestMethod.POST)
 
-    public TrueFalseModel createUser(@RequestBody Users users){
+    public TrueFalseModel createUser(@RequestBody Users requestUser){
         String login;
         String email;
         Integer password;
         TrueFalseModel resp = new TrueFalseModel();
 
-        if (user.getRegisterAccess(users.getLogin())==null) {
-            resp.setResponse(user.creatUser(users.getEmail(), users.getLogin(), users.getPassword()));
+        if (user.getRegisterAccess(requestUser.getLogin())==null) {
+            resp.setResponse(user.creatUser(requestUser.getEmail(), requestUser.getLogin(), requestUser.getPassword()));
             return resp;
         } else {
             resp.setResponse(0);
@@ -43,54 +43,23 @@ public class UsersController {
         }
 
     }
-    @RequestMapping(value="/update",method=RequestMethod.PUT,consumes="text/plain")
-    public int updateUser(@RequestBody String param){
-        Users us = new Users();
-        try{
-            JSONObject json = new JSONObject(param);
-            us.setEmail(json.getString("email"));
-            us.setId(json.getInt("id"));
-            us.setLogin(json.getString("login"));
-            us.setPassword(json.getInt("password"));
-        }catch(JSONException e){
-            e.getLocalizedMessage();
-            return 0;
-        }
-        return user.updateUser(us);
+    @RequestMapping(value="/update",method=RequestMethod.PUT)
+    public int updateUser(@RequestBody Users requestUser){
+        return user.updateUser(requestUser);
     }
     @RequestMapping(value="/{id}", method=RequestMethod.DELETE)
     public int deleteUser(@PathVariable Integer id){
         return user.deleteUser(id);
     }
 
-    @RequestMapping(value="/getUserAccessbyLog", method=RequestMethod.GET, consumes="text/plain")
-    public boolean getUser(@RequestBody String param){
-        String login;
-        Integer password;
-        try {
-            JSONObject json = new JSONObject(param);
-            login = json.getString("login");
-            password = json.getInt("password");
-        }catch(JSONException e){
-            e.getLocalizedMessage();
-            return false;
-        }
-        return user.getUserAccessbyLog(login, password);
-    }
-    @RequestMapping(value = "/getRegisterAccess", method=RequestMethod.GET, consumes="text/plain")
-    public boolean getRegisterAccess(@RequestBody String param){
-        String login;
-        try {
-            JSONObject json = new JSONObject(param);
-            login = json.getString("login");
-        }catch (JSONException e){
-            e.getLocalizedMessage();
-            return false;
-        }
-        if (user.getRegisterAccess(login)==null){
-            return true;
-        }else return false;
+    @RequestMapping(value="/getUserAccessbyLog", method=RequestMethod.GET)
+    public TrueFalseModel getUserByLog(@RequestBody Users requestUser){
+        TrueFalseModel resp = new TrueFalseModel();
+        if(user.getUserAccessbyLog(requestUser.getLogin(), requestUser.getPassword())){
+            resp.setResponse(1);
+        }else resp.setResponse(0);
+        return resp;
     }
 }
 
-//https://cookiter.herokuapp.com/user/create?Content-Type=application/json
+//https://cookiter.herokuapp.com/
