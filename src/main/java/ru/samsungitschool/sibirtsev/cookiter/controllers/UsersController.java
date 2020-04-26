@@ -53,7 +53,7 @@ public class UsersController {
     }
 
     @RequestMapping(value="/getUserAccessbyLog", method=RequestMethod.GET)
-    public TrueFalseModel getUserByLog(@RequestBody Users requestUser){
+    public TrueFalseModel getUserByLog(@RequestParam Users requestUser){
         TrueFalseModel resp = new TrueFalseModel();
         if(user.getUserAccessbyLog(requestUser.getLogin(), requestUser.getPassword())){
             resp.setResponse(1);
