@@ -44,4 +44,13 @@ public class UsersRepository {
             return false;
         }
     }
+    public boolean getUserAccessbyEmail(String email, Integer pass){
+        try {
+            Users user = jdbcTemplate.queryForObject("SELECT * FROM \"USERS\" WHERE \"EMAIL\" LIKE  ? ", new UsersMapper(), email);
+            return user.getPassword().equals(pass);
+        }catch (Exception e){
+            e.getLocalizedMessage();
+            return false;
+        }
+    }
 }

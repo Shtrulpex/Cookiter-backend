@@ -47,6 +47,7 @@ public class UsersController {
     public int updateUser(@RequestBody Users requestUser){
         return user.updateUser(requestUser);
     }
+
     @RequestMapping(value="/{id}", method=RequestMethod.DELETE)
     public int deleteUser(@PathVariable Integer id){
         return user.deleteUser(id);
@@ -56,6 +57,15 @@ public class UsersController {
     public TrueFalseModel getUserByLog(@RequestParam String login, @RequestParam int password){
         TrueFalseModel resp = new TrueFalseModel();
         if(user.getUserAccessbyLog(login, password)){
+            resp.setResponse(1);
+        }else resp.setResponse(0);
+        return resp;
+    }
+
+    @RequestMapping(value="/getUserAccessbyEmail", method=RequestMethod.GET)
+    public TrueFalseModel getUserByEmail(@RequestParam String email, @RequestParam int password){
+        TrueFalseModel resp = new TrueFalseModel();
+        if(user.getUserAccessbyEmail(email, password)){
             resp.setResponse(1);
         }else resp.setResponse(0);
         return resp;
