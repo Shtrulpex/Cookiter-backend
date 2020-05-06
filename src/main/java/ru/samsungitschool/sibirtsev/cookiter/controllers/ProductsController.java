@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import ru.samsungitschool.sibirtsev.cookiter.entity.Products;
 import ru.samsungitschool.sibirtsev.cookiter.repositories.ProductsRepository;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("pr")
 public class ProductsController {
@@ -43,5 +45,10 @@ public class ProductsController {
     @RequestMapping(value="/{id}", method=RequestMethod.DELETE)
     public int deleteProduct(@PathVariable Integer id){
         return productsRepository.deleteProduct(id);
+    }
+
+    @RequestMapping(value="/getAll",method=RequestMethod.GET)
+    public List<Products> getAll(){
+        return productsRepository.getAll();
     }
 }

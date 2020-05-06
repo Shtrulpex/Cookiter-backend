@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.samsungitschool.sibirtsev.cookiter.entity.Products;
+import ru.samsungitschool.sibirtsev.cookiter.mappers.ProductsMapper;
 
 @Component
 public class ProductsRepository {
@@ -28,5 +31,9 @@ public class ProductsRepository {
 
     public int deleteProduct(Integer id){
         return jdbcTemplate.update("DELETE FROM \"PRODUCTS\" WHERE \"ID\" = ?", id);
+    }
+
+    public List<Products> getAll(){
+        return jdbcTemplate.query("SELECT * FROM \"PRODUCTS\"", new ProductsMapper());
     }
 }
