@@ -18,8 +18,8 @@ public class ProductsRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public int createProduct(String name, Long[] recipes){
-        return jdbcTemplate.update("INSERT INTO\"PRODUCTS\" (\"NAME\", \"RECIPES\") VALUES(?,?)", name, recipes);
+    public int createProduct(String name){
+        return jdbcTemplate.update("INSERT INTO\"PRODUCTS\" \"NAME\" VALUE ?", name);
     }
 
     public int updateProduct(Products products){
