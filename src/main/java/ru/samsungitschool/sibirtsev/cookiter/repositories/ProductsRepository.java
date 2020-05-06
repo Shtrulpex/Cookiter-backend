@@ -19,7 +19,7 @@ public class ProductsRepository {
     private JdbcTemplate jdbcTemplate;
 
     public int createProduct(String name){
-        return jdbcTemplate.update("INSERT INTO\"PRODUCTS\" \"NAME\" VALUE ?", name);
+        return jdbcTemplate.update("INSERT INTO\"PRODUCTS\" (\"NAME\") VALUES (?)", name);
     }
 
     public int updateProduct(Products products){
