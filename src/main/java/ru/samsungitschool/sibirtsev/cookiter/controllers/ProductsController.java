@@ -15,8 +15,9 @@ public class ProductsController {
     private ProductsRepository productsRepository;
 
     @RequestMapping(value="/create",method=RequestMethod.POST)
-    public int createProduct(@RequestBody String name){
-        return productsRepository.createProduct(name);
+    public String createProduct(@RequestBody String name){
+        //return productsRepository.createProduct(name);
+        return name;
     }
     @RequestMapping(value="/update", method=RequestMethod.PUT, consumes="text/plain")
     public int updateProduct(@RequestBody String param){
