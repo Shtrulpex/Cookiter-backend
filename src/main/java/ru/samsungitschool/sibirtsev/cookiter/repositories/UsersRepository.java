@@ -1,17 +1,10 @@
 package ru.samsungitschool.sibirtsev.cookiter.repositories;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.List;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.samsungitschool.sibirtsev.cookiter.entity.Users;
+import ru.samsungitschool.sibirtsev.cookiter.mappers.UsersMapper;
 
 @Component
 public class UsersRepository {

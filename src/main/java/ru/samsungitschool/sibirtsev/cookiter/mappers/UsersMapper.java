@@ -1,4 +1,4 @@
-package ru.samsungitschool.sibirtsev.cookiter.repositories;
+package ru.samsungitschool.sibirtsev.cookiter.mappers;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
