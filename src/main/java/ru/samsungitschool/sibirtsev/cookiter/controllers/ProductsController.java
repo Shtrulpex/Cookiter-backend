@@ -20,7 +20,7 @@ public class ProductsController {
     public Integer createProduct(@RequestBody String name){
         return productsRepository.createProduct(name);
     }
-    @RequestMapping(value="/update", method=RequestMethod.PUT, consumes="text/plain")
+    @RequestMapping(value="/update", method=RequestMethod.PUT)
     public int updateProduct(@RequestBody String param){
         Products pr = new Products();
         try{

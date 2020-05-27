@@ -5,8 +5,17 @@ public class Recipes {
 
     private Integer id;
     private String name;
-    private Long[] products;
+    private Integer[] products;
     private String recipe;
+    private String author;
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
 
     public void setId(Integer id) {
         this.id = id;
@@ -16,7 +25,7 @@ public class Recipes {
         this.name = name;
     }
 
-    public void setProducts(Long[] products) {
+    public void setProducts(Integer[] products) {
         this.products = products;
     }
 
@@ -32,7 +41,7 @@ public class Recipes {
         return name;
     }
 
-    public Long[] getProducts() {
+    public Integer[] getProducts() {
         return products;
     }
 

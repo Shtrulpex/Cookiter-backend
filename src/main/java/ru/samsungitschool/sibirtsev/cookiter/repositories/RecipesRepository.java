@@ -1,9 +1,7 @@
 package ru.samsungitschool.sibirtsev.cookiter.repositories;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,12 +15,10 @@ public class RecipesRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public int createRecipe(String name, Long[] products, String recipe){
-        return jdbcTemplate.update("INSERT INTO \"RECIPES\" (\"NAME\", \"PRODUCTS\", \"RECIPE\") VALUES (?, ?, ?)", name, products, recipe);
+    public int createRecipe(String name, Array products, String recipe, String author){
+        return jdbcTemplate.update("INSERT INTO \"RECIPES\" (\"NAME\", \"PRODUCTS\", \"RECIPE\", \"AUTHOR\") VALUES (?, ?, ?, ?)", name, products, recipe, author);
     }
-    public int updateRecipe(Recipes recipes){
-        return  jdbcTemplate.update("UPDATE \"RECIPES\" SET \"NAME\" = ? \"RECIPE\" = ? WHERE \"ID\"=?", recipes.getName(), recipes.getRecipe());
-    }
+
     public int deleteRecipe(Integer id){
         return jdbcTemplate.update("DELETE FROM \"RECIPES\" WHERE \"ID\" = ?",id);
     }
