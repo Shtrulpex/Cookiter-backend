@@ -83,3 +83,4 @@ public class UsersController {
 }
 
 //https://cookiter.herokuapp.com/
+//"INSERT INTO \"RECIPES\" (\"NAME\", \"PRODUCTS\", \"RECIPE\", \"AUTHOR\") VALUES (?, ?, ?, ?)"

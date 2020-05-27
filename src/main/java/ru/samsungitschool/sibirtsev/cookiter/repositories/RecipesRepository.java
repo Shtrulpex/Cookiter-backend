@@ -16,14 +16,14 @@ public class RecipesRepository {
     private JdbcTemplate jdbcTemplate;
 
     public int createRecipe(String name, Integer[] products, String recipe, String author){
-        String sql_stmt = "INSERT INTO \"RECIPES\" (\"NAME\", \"PRODUCTS\", \"RECIPE\", \"AUTHOR\") VALUES (?, ?, {";
+        String sql_stmt = "INSERT INTO \"RECIPES\" (\"NAME\", \"RECIPE\",\"PRODUCTS\" , \"AUTHOR\") VALUES (?, ?, {";
 
         for(int i=0; i<products.length-1;i++){
             sql_stmt+=products[i].toString()+", ";
         }
         sql_stmt+=products[products.length-1]+"}, ?)";
 
-        return jdbcTemplate.update(sql_stmt, name, products, recipe, author);
+        return jdbcTemplate.update(sql_stmt, name, recipe, author);
     }
 
     public int deleteRecipe(Integer id){
