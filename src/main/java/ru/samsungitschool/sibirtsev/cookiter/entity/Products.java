@@ -4,7 +4,7 @@ public class Products {
 
     private Integer id;
     private String name;
-    private Long[] recipes;
+    private Integer[] recipes;
 
     public void setId(Integer id) {
         this.id = id;
@@ -12,7 +12,7 @@ public class Products {
     public void setName(String name) {
         this.name = name;
     }
-    public void setRecipes(Long[] recipes) {
+    public void setRecipes(Integer[] recipes) {
         this.recipes = recipes;
     }
     public Integer getId() {
@@ -22,7 +22,7 @@ public class Products {
         return name;
     }
 
-    public Long[] getRecipes() {
+    public Integer[] getRecipes() {
         return recipes;
     }
 }

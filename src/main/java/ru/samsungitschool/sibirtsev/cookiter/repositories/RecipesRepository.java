@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.samsungitschool.sibirtsev.cookiter.entity.Recipes;
+import ru.samsungitschool.sibirtsev.cookiter.mappers.RecipesMapper;
 
 @Component
 public class RecipesRepository {
@@ -23,7 +24,8 @@ public class RecipesRepository {
         }
         sql_stmt+=products[products.length-1]+"}\', ?)";
 
-        return jdbcTemplate.update(sql_stmt, name, recipe, author);
+         jdbcTemplate.update(sql_stmt, name, recipe, author);
+         return jdbcTemplate.queryForObject("SELECT * FROM \"RECIPES\" WHERE \"NAME\" LIKE  ? ", new RecipesMapper(), name).getId();
     }
 
     public int deleteRecipe(Integer id){

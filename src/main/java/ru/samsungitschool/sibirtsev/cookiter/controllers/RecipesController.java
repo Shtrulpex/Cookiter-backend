@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import ru.samsungitschool.sibirtsev.cookiter.TrueFalseModel;
 import ru.samsungitschool.sibirtsev.cookiter.entity.Recipes;
 import ru.samsungitschool.sibirtsev.cookiter.repositories.RecipesRepository;
 
@@ -22,9 +23,12 @@ import java.sql.DriverManager;
 public class RecipesController {
     @Autowired
     private RecipesRepository recipes;
+
     @RequestMapping(value="/create",method=RequestMethod.POST)
-    public int createRecipe(@RequestBody Recipes recipes1){
-        return recipes.createRecipe(recipes1.getName(), recipes1.getProducts(), recipes1.getRecipe(), recipes1.getAuthor());
+    public TrueFalseModel createRecipe(@RequestBody Recipes recipes1){
+        TrueFalseModel resp = new TrueFalseModel();
+        resp.setResponse(recipes.createRecipe(recipes1.getName(), recipes1.getProducts(), recipes1.getRecipe(), recipes1.getAuthor()));
+         return resp;
     }
 
     @RequestMapping(value="/{id}", method=RequestMethod.DELETE)
