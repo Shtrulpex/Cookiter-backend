@@ -15,6 +15,7 @@ import ru.samsungitschool.sibirtsev.cookiter.repositories.RecipesRepository;
 import java.sql.Array;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.DriverManager;
 
 @RestController
 @RequestMapping("rec")
@@ -23,9 +24,13 @@ public class RecipesController {
     private RecipesRepository recipes;
     @RequestMapping(value="/create",method=RequestMethod.POST)
     public int createRecipe(@RequestBody Recipes recipes1){
-        Connection con = null;
+        String url = "jdbc:postgresql://dfralvpxdkshbu:cf37f1851fe022a213de7e5408d35a46a4530af224dd24d4471c403a47a598c4@ec2-46-137-177-160.eu-west-1.compute.amazonaws.com:5432/d7scn0edabdja2?sslmode=require";
+        String username = "dfralvpxdkshbu";
+        String pass = "cf37f1851fe022a213de7e5408d35a46a4530af224dd24d4471c403a47a598c4";
+
         try {
-            Array products = con.createArrayOf("integer", recipes1.getProducts());
+            Connection con = DriverManager.getConnection(url, username, pass);
+            Array products = con.createArrayOf("bigint", recipes1.getProducts());
             return recipes.createRecipe(recipes1.getName(), products, recipes1.getRecipe(), recipes1.getAuthor());
         }catch(SQLException e){
             e.getLocalizedMessage();
