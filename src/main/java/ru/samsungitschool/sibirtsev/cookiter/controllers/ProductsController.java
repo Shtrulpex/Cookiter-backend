@@ -34,7 +34,7 @@ public class ProductsController {
             for (int k=0; k<jsonar.length(); k++){
                 recipes[k]=jsonar.getLong(k);
             }
-            pr.setRecipes(recipes);
+            pr.setRecipes(new Integer[1]);
 
         }catch(JSONException e){
             e.getLocalizedMessage();
