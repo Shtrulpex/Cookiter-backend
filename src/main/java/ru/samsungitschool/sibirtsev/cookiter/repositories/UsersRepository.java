@@ -46,4 +46,12 @@ public class UsersRepository {
             return false;
         }
     }
+
+    public Users getUserByEmail(String email){
+        try {
+            return jdbcTemplate.queryForObject("SELECT * FROM \"USERS\" WHERE \"EMAIL\" LIKE  ? ", new UsersMapper(), email);
+        }catch (Exception e){
+            return null;
+        }
+    }
 }

@@ -70,6 +70,16 @@ public class UsersController {
         }else resp.setResponse(0);
         return resp;
     }
+
+    @RequestMapping(value = "/getUserByEmail", method = RequestMethod.GET)
+    public Users getUserByEmail(@RequestParam String email){
+        return user.getUserByEmail(email);
+    }
+
+    @RequestMapping(value = "/getUserByLog", method = RequestMethod.GET)
+    public Users getUserByLog(@RequestParam String login){
+        return user.getRegisterAccess(login);
+    }
 }
 
 //https://cookiter.herokuapp.com/
