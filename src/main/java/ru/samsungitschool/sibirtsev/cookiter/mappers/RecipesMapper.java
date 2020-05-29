@@ -4,6 +4,7 @@ import org.springframework.jdbc.core.RowMapper;
 import ru.samsungitschool.sibirtsev.cookiter.entity.Recipes;
 
 import java.sql.Array;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -14,8 +15,9 @@ public class RecipesMapper implements RowMapper<Recipes> {
         recipe.setAuthor(rs.getString("author"));
         recipe.setRecipe(rs.getString("recipe"));
         recipe.setId(rs.getInt("id"));
-        Array ar = rs.getArray("products");
-        recipe.setProducts((Integer[])ar.getArray());
+        String ar = rs.getArray("products").toString();
+        recipe.setAr(ar);
+       // recipe.setProducts((Integer[])ar.getArray());
         return recipe;
     }
 }
