@@ -36,4 +36,9 @@ public class RecipesController {
     public List<Recipes> getAll(){
         return recipes.getAll();
     }
+
+    @RequestMapping(value="/getByLog", method = RequestMethod.GET)
+    public List<Recipes> getByLog(@RequestParam String login){
+        return recipes.getByLog(login);
+    }
 }

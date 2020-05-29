@@ -36,4 +36,8 @@ public class RecipesRepository {
     public List<Recipes> getAll(){
         return jdbcTemplate.query("SELECT * FROM \"RECIPES\"", new RecipesMapper());
     }
+
+    public List<Recipes> getByLog(String author){
+        return jdbcTemplate.query("SELECT * FROM \"RECIPES\" WHERE \"AUTHOR\" LIKE ?", new RecipesMapper(), author);
+    }
 }
