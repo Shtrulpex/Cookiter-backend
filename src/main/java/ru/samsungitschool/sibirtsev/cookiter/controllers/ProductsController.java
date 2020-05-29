@@ -5,6 +5,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import ru.samsungitschool.sibirtsev.cookiter.TrueFalseModel;
 import ru.samsungitschool.sibirtsev.cookiter.entity.Products;
 import ru.samsungitschool.sibirtsev.cookiter.repositories.ProductsRepository;
 
@@ -21,8 +22,10 @@ public class ProductsController {
         return productsRepository.createProduct(name);
     }
     @RequestMapping(value="/update", method=RequestMethod.PUT)
-    public int updateProduct(@RequestParam Integer id, @RequestParam Integer recipeId){
-        return productsRepository.updateProduct(id, recipeId);
+    public TrueFalseModel updateProduct(@RequestParam Integer id, @RequestParam Integer recipeId){
+        TrueFalseModel resp = new TrueFalseModel();
+        resp.setResponse(productsRepository.updateProduct(id, recipeId));
+        return resp;
     }
     @RequestMapping(value="/{id}", method=RequestMethod.DELETE)
     public int deleteProduct(@PathVariable Integer id){
