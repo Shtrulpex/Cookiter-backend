@@ -1,6 +1,7 @@
 package ru.samsungitschool.sibirtsev.cookiter.repositories;
 
 import java.sql.*;
+import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,5 +31,9 @@ public class RecipesRepository {
 
     public int deleteRecipe(Integer id){
         return jdbcTemplate.update("DELETE FROM \"RECIPES\" WHERE \"ID\" = ?",id);
+    }
+
+    public List<Recipes> getAll(){
+        return jdbcTemplate.query("SELECT * FROM \"RECIPES\"", new RecipesMapper());
     }
 }
