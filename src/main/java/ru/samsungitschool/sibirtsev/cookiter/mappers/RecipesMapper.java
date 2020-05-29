@@ -13,6 +13,7 @@ public class RecipesMapper implements RowMapper<Recipes> {
         recipe.setName(rs.getString("name"));
         recipe.setAuthor(rs.getString("author"));
         recipe.setRecipe(rs.getString("recipe"));
+        recipe.setId(rs.getInt("id"));
         //Array ar = rs.getArray("products");
        // recipe.setProducts((Integer[])ar.getArray());
         return recipe;
