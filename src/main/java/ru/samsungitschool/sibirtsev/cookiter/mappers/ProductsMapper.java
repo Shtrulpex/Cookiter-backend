@@ -12,9 +12,16 @@ public class ProductsMapper implements RowMapper<Products> {
         Products pr = new Products();
         pr.setName(rs.getString("name"));
         pr.setId(rs.getInt("id"));
-       // Array ar = rs.getArray("recipes");
-        //Integer[] recipes = (Integer[])ar.getArray();
-        //pr.setRecipes(recipes);
+        String ar = rs.getArray("recipes").toString();
+
+        ar=ar.substring(1,ar.length()-1);
+        String[] a = ar.split(",");
+        Integer[] array = new Integer[a.length];
+        for(int i=0;i<a.length;i++){
+            array[i]=Integer.parseInt(a[i]);
+        }
+        pr.setRecipes(array);
+
         return pr;
     }
 }

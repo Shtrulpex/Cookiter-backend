@@ -25,8 +25,9 @@ public class ProductsRepository {
         return jdbcTemplate.update("INSERT INTO \"PRODUCTS\" (\"NAME\") VALUES (?)", name);
     }
 
-    public int updateProduct(Products products){
-        return jdbcTemplate.update("UPDATE \"PRODUCTS\" SET \"RECIPES\" = ? WHERE \"ID\" = ?", products.getRecipes(), products.getId());
+    public int updateProduct(Integer id, Integer recipeId){
+
+        return jdbcTemplate.update("UPDATE \"PRODUCTS\" SET \"RECIPES\" = \'{}\' WHERE \"ID\" = ?", id);
     }
 
     public int deleteProduct(Integer id){

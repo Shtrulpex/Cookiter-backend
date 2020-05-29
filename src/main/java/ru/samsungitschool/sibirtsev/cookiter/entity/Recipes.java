@@ -8,15 +8,6 @@ public class Recipes {
     private Integer[] products;
     private String recipe;
     private String author;
-    private String ar;
-
-    public void setAr(String ar) {
-        this.ar = ar;
-    }
-
-    public String getAr() {
-        return ar;
-    }
 
     public void setAuthor(String author) {
         this.author = author;

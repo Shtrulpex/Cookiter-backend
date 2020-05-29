@@ -21,26 +21,8 @@ public class ProductsController {
         return productsRepository.createProduct(name);
     }
     @RequestMapping(value="/update", method=RequestMethod.PUT)
-    public int updateProduct(@RequestBody String param){
-        Products pr = new Products();
-        try{
-            JSONObject json = new JSONObject(param);
-            JSONArray jsonar;
-            Long[] recipes;
-            pr.setId(json.getInt("id"));
-            pr.setName(json.getString("name"));
-            jsonar = json.getJSONArray("recipes");
-            recipes = new Long[jsonar.length()];
-            for (int k=0; k<jsonar.length(); k++){
-                recipes[k]=jsonar.getLong(k);
-            }
-            pr.setRecipes(new Integer[1]);
-
-        }catch(JSONException e){
-            e.getLocalizedMessage();
-            return 0;
-        }
-        return productsRepository.updateProduct(pr);
+    public int updateProduct(@RequestParam Integer id, @RequestParam Integer recipeId){
+        productsRepository.updateProduct(id, recipeId);
     }
     @RequestMapping(value="/{id}", method=RequestMethod.DELETE)
     public int deleteProduct(@PathVariable Integer id){
