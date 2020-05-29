@@ -38,7 +38,7 @@ public class ProductsController {
     }
 
     @RequestMapping(value="/getById", method=RequestMethod.GET)
-    public String getById(@RequestParam Integer id){
+    public Products  getById(@RequestParam Integer id){
         return productsRepository.getById(id);
     }
 }

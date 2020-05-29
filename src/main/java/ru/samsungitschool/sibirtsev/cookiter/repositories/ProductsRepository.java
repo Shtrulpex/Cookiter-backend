@@ -52,7 +52,7 @@ public class ProductsRepository {
         return jdbcTemplate.query("SELECT * FROM \"PRODUCTS\"", new ProductsMapper());
     }
 
-    public String getById(Integer id){
-        return  jdbcTemplate.queryForObject("SELECT * FROM \"PRODUCTS\" WHERE \"ID\" = ?", new ProductsMapper(), id).getName();
+    public Products getById(Integer id){
+        return  jdbcTemplate.queryForObject("SELECT * FROM \"PRODUCTS\" WHERE \"ID\" = ?", new ProductsMapper(), id);
     }
 }
