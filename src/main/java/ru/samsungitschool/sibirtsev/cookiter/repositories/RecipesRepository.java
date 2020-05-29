@@ -25,7 +25,7 @@ public class RecipesRepository {
         sql_stmt+=products[products.length-1]+"}\', ?)";
 
          int a=jdbcTemplate.update(sql_stmt, name, recipe, author);
-         return jdbcTemplate.queryForObject("SELECT * FROM \"RECIPES\" WHERE \"NAME\" LIKE  ? ", new RecipesMapper(), name).getId();
+         return (jdbcTemplate.queryForObject("SELECT * FROM \"RECIPES\" WHERE \"NAME\" LIKE  ? ", new RecipesMapper(), name)).getId();
     }
 
     public int deleteRecipe(Integer id){
