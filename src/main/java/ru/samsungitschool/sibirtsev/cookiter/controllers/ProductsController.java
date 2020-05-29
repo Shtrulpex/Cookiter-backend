@@ -36,4 +36,9 @@ public class ProductsController {
     public List<Products> getAll(){
         return productsRepository.getAll();
     }
+
+    @RequestMapping(value="/getById", method=RequestMethod.GET)
+    public String getById(@RequestParam Integer id){
+        return productsRepository.getById(id);
+    }
 }

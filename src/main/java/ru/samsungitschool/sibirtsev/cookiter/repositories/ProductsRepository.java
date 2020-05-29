@@ -51,4 +51,8 @@ public class ProductsRepository {
     public List<Products> getAll(){
         return jdbcTemplate.query("SELECT * FROM \"PRODUCTS\"", new ProductsMapper());
     }
+
+    public String getById(Integer id){
+        return  jdbcTemplate.queryForObject("SELECT * FROM \"PRODUCTS\" WHERE \"ID\" = ?", new ProductsMapper(), id).getName();
+    }
 }
