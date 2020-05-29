@@ -25,10 +25,10 @@ public class RecipesController {
     private RecipesRepository recipes;
 
     @RequestMapping(value="/create",method=RequestMethod.POST)
-    public TrueFalseModel createRecipe(@RequestBody Recipes recipes1){
-        TrueFalseModel resp = new TrueFalseModel();
-        resp.setResponse(recipes.createRecipe(recipes1.getName(), recipes1.getProducts(), recipes1.getRecipe(), recipes1.getAuthor()));
-        return resp;
+    public Recipes createRecipe(@RequestBody Recipes recipes1){
+        //TrueFalseModel resp = new TrueFalseModel();
+        //resp.setResponse(recipes.createRecipe(recipes1.getName(), recipes1.getProducts(), recipes1.getRecipe(), recipes1.getAuthor()));
+        return recipes.createRecipe(recipes1.getName(), recipes1.getProducts(), recipes1.getRecipe(), recipes1.getAuthor());
     }
 
     @RequestMapping(value="/{id}", method=RequestMethod.DELETE)

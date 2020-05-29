@@ -16,7 +16,7 @@ public class RecipesRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public int createRecipe(String name, Integer[] products, String recipe, String author){
+    public Recipes createRecipe(String name, Integer[] products, String recipe, String author){
         String sql_stmt = "INSERT INTO \"RECIPES\" (\"NAME\", \"RECIPE\",\"PRODUCTS\" , \"AUTHOR\") VALUES (?, ?, \'{";
 
         for(int i=0; i<products.length-1;i++){
@@ -24,8 +24,8 @@ public class RecipesRepository {
         }
         sql_stmt+=products[products.length-1]+"}\', ?)";
 
-         int a=jdbcTemplate.update(sql_stmt, name, recipe, author);
-         return (jdbcTemplate.queryForObject("SELECT * FROM \"RECIPES\" WHERE \"NAME\" LIKE  ? ", new RecipesMapper(), name)).getId();
+        jdbcTemplate.update(sql_stmt, name, recipe, author);
+         return (jdbcTemplate.queryForObject("SELECT * FROM \"RECIPES\" WHERE \"NAME\" LIKE  ? ", new RecipesMapper(), name));
     }
 
     public int deleteRecipe(Integer id){
