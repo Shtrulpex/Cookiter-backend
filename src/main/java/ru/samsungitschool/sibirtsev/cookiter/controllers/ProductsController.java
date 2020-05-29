@@ -22,7 +22,7 @@ public class ProductsController {
     }
     @RequestMapping(value="/update", method=RequestMethod.PUT)
     public int updateProduct(@RequestParam Integer id, @RequestParam Integer recipeId){
-        productsRepository.updateProduct(id, recipeId);
+        return productsRepository.updateProduct(id, recipeId);
     }
     @RequestMapping(value="/{id}", method=RequestMethod.DELETE)
     public int deleteProduct(@PathVariable Integer id){
